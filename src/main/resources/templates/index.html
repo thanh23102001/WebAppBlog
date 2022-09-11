@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+<h1>Welcome to My Application!!!</h1>
+    <a href="new">Create New Blog</a>
+    <br/><br/>
+<table border="1">
+    <thead>
+      <tr>
+          <th>Blog ID</th>
+          <th>Title</th>
+          <th>Cover</th>
+          <th>Content</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog: ${listBlogs}">
+        <td th:text="${blog.id}">Blog ID</td>
+        <td th:text="${blog.title}">Title</td>
+        <td th:text="${blog.cover}">Cover</td>
+        <td th:text="${blog.content}">Cover</td>
+        <td><a th:href="@{'/edit/'+${blog.id}}">Edit</a></td>
+        <td><a th:href="@{'/delete/'+${blog.id}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
