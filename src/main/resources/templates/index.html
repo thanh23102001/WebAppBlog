@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googLeapis.com/ajax/Libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <div align="center">
@@ -16,6 +17,7 @@
           <th>Title</th>
           <th>Cover</th>
           <th>Content</th>
+          <th>Image</th>
           <th></th>
       </tr>
     </thead>
@@ -25,6 +27,7 @@
         <td th:text="${blog.title}">Title</td>
         <td th:text="${blog.cover}">Cover</td>
         <td th:text="${blog.content}">Cover</td>
+        <td><img th:src="${blog.image}" width="50" height="50"></td>
         <td><a th:href="@{'/edit/'+${blog.id}}">Edit</a></td>
         <td><a th:href="@{'/delete/'+${blog.id}}">Delete</a></td>
     </tr>
