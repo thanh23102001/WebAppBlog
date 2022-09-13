@@ -8,7 +8,7 @@
 <div align="center">
   <h1>Create new Blog</h1>
   <br/>
-  <form action="#" th:action="@{/save}" th:object="${blog}" enctype="multipart/form-data" method="post">
+  <form action="#" th:action="@{/save}" th:object="${blog}" enctype="multipart/form-data" method="post" >
     <table border="0" cellpadding="10">
       <tr>
         <td>Title</td>
@@ -22,15 +22,19 @@
         <td>Content</td>
         <td><input type="text" th:field="*{content}"/></td>
       </tr>
-      <td>Image</td>
-      <td><input type="file" th:field="*{image}" accept="image/png, image/jpeg"></td>
       <tr>
-      <td>
-      <p>
-        <img id ="thumbnail" alt="Logo Preview" />
-      </p>
-      </td>
+      <td>Image</td>
+      <td><input type="file" th:field="*{image}" multiple="multiple" name="fileImage" id="fileImage" accept="image/png, image/jpeg"></td>
       </tr>
+      <tr>
+        <td>Category</td>
+        <td>
+       <select th:field="*{category}">
+         <th:block th:each="cat : ${listCategories}">
+           <option th:text="${cat.name}" th:value="${cat.id}"/>
+         </th:block>
+       </select>
+        </td>
       </tr>
       <tr>
         <td colspan="2"><button type="submit">Save</button></td>

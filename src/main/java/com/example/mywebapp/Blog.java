@@ -1,8 +1,10 @@
 package com.example.mywebapp;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,8 +16,28 @@ public class Blog {
     private String title;
     private String cover;
     private String content;
+//    private String image;
 
-    private String image;
+    @Transient
+    private List<MultipartFile> image;
+    public List<MultipartFile> getImage() {
+        return image;
+    }
+
+    public void setImage(List<MultipartFile> image) {
+        this.image = image;
+    }
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Blog() {
     }
@@ -24,55 +46,19 @@ public class Blog {
         this.title = blogBuilder.title;
         this.cover = blogBuilder.cover;
         this.content = blogBuilder.content;
-        this.image = blogBuilder.image;
+//        this.image = blogBuilder.image;
+        this.category = blogBuilder.category;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCover() {
-        return cover;
-    }
-
-    public void setCover(String cover) {
-        this.cover = cover;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
+//
     public static class BlogBuilder{
         private final String title;
         private String cover;
-        private String image;
+//        private String image;
 
         private  String content;
+
+        private Category category;
 
         public BlogBuilder(String title) {
             this.title = title;
@@ -88,15 +74,21 @@ public class Blog {
             return this;
         }
 
-        public BlogBuilder image(String image) {
-            this.image = image;
+//        public BlogBuilder image(String image) {
+//            this.image = image;
+//            return this;
+//        }
+
+        public BlogBuilder category(Category category){
+            this.category = category;
             return this;
         }
+
+
 
         public Blog build() {
             return new Blog(this);
         }
 
     }
-
 }

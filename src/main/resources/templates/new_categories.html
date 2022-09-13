@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <div>
+    <h1>Create New Category</h1>
+  </div>
+  <form th:action="@{/categories/save}" th:object="${category}" method="post">
+  <div>
+    <label>Category Name</label>
+  </div>
+    <div>
+      <input type="text" th:field="*{name}" class="form-control" required/>
+    </div>
+    <br>
+    <div>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

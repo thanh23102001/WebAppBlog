@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class BlogService implements IBlogService {
     @Autowired
- private BlogRepository repo;
+    private BlogRepository repo;
 
     @Autowired
     private IBlogRepository blogRepository;

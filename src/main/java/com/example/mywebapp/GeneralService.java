@@ -1,7 +1,5 @@
 package com.example.mywebapp;
-
 import java.util.Optional;
-
 public interface GeneralService<T> {
     Iterable<T> findAll();
 
